@@ -1,0 +1,3 @@
+/*
+renders some CommentaryNew which is used also in top of commentaries component
+*/

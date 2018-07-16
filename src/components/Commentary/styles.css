@@ -1,0 +1,44 @@
+.commentary {
+  /* TODO: remove this properties after commentary used inside commentaries component, which will set fixed width */
+  background: #eff;
+  width: 300px;
+}
+
+.commentary__body {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  max-height: 8rem;
+  overflow: hidden;
+}
+
+.commentary__body_expanded {
+  max-height: none;
+}
+
+.commentary__header {
+  line-height: 1.8rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.commentary__username {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.commentary__createdAt {
+  color: hsl(0, 0%, 53%);
+}
+
+.commentary__createdAt:hover {
+  color: hsl(0, 0%, 7%);
+}
+
+.commentary__expander {
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  font-weight: bold;
+  user-select: none;
+  cursor: pointer;
+  width: 6em;
+}
