@@ -1,4 +1,4 @@
-const apiRoot = 'http://yii2basic.test';
+const apiRoot = 'http://api.myblog.test';
 
 export default {
     apiRoot,
@@ -9,7 +9,8 @@ export default {
             csrfToken: `${apiRoot}/site/csrf-token`,
         },
         commentary: {
-            create: `${apiRoot}/commentaries/commentary/create`,
+            create: `${apiRoot}/commentary/create`,
+            delete: `${apiRoot}/commentary/delete`,
         },
         post: {}
     },

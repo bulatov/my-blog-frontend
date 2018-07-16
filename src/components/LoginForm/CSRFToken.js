@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import api from '../../api/api.js';
+import ApiService from '../../services/ApiService.js';
 
 export default class CSRFToken extends Component {
     static propTypes = {
@@ -13,7 +13,7 @@ export default class CSRFToken extends Component {
     };
 
     componentDidMount() {
-        api.getCSRFToken()
+        ApiService.getCSRFToken()
         .then((csrfToken) => {
             this.setState({ csrfToken });
         });
