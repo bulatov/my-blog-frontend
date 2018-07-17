@@ -11,7 +11,6 @@ export default class PostContainer extends Component {
         // TODO use real post_id, maybe from match.params (react router)
         ApiService.post.get(1)
         .then((json) => {
-            console.log(json);
             this.setState({
                 data: json
             });

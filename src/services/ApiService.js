@@ -27,7 +27,7 @@ const ApiService = {
         get: (postId) => {
             return new Promise((resolve, reject) => {
                 resolve({
-                    id: 2,
+                    id: 3,
                     userName: 'admin',
                     createdAt: 1531825574387,
                     title: 'post-title-mock',
