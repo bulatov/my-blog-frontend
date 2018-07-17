@@ -7,7 +7,7 @@ const fetchOptions = {
 };
 
 const ApiService = {
-    getCSRFToken: () => {
+    getCsrfToken: () => {
         return fetch(config.urls.auth.csrfToken, fetchOptions)
         .then((response) => response.json())
         .then((json) => json['csrfToken']);
