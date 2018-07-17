@@ -9,8 +9,7 @@ const fetchOptions = {
 const ApiService = {
     getCsrfToken: () => {
         return fetch(config.urls.auth.csrfToken, fetchOptions)
-        .then((response) => response.json())
-        .then((json) => json['csrfToken']);
+        .then((response) => response.json());
     },
 
     createCommentary: () => {

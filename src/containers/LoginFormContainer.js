@@ -4,19 +4,25 @@ import ApiService from '../services/ApiService.js';
 
 export default class LoginFormContainer extends Component {
     state = {
-        csrfToken: null
+        data: null
     };
 
     componentDidMount() {
         ApiService.getCsrfToken()
-        .then((csrfToken) => {
-            this.setState({ csrfToken });
+        .then((json) => {
+            this.setState({
+                data: json
+            });
         });
     }
 
     render() {
         return (
-            <LoginForm csrfToken={this.state.csrfToken} csrfInputFieldName={"_csrf"} {...this.props} />
+            <LoginForm
+                {...this.props}
+                csrfInputFieldName={"_csrf"}
+                {...this.state.data}
+            />
         );
     }
 }
