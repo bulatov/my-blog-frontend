@@ -49,7 +49,7 @@ export default class CommentaryNew extends Component {
         /*
         * TODO call handler with real post_id
         */
-        this.props.onNewCommentarySubmit(1, this.state.value);
+        this.props.onNewCommentarySubmit(1, this.state.inputValue);
     }
 
     render() {

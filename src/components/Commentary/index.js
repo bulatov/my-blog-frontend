@@ -8,7 +8,7 @@ export default class Commentary extends Component {
 
   static propTypes = {
     userName: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
+    createdAt: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired,
   };
 

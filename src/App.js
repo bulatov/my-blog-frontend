@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import LoginFormContainer  from './containers/LoginFormContainer';
-import CommentaryNew from './components/Commentary/CommentaryNew';
+import PostContainer from './containers/PostContainer';
 // <Commentary userName="frt" createdAt="2017 03 01 14:15:16" content={`hello everyone.hello everyone.hello \n everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.`} />
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <div className="App-intro">
-            <CommentaryNew placeholder="Add a public comment" cancelButtonText="Cancel" submitButtonText="Reply" />
+            <PostContainer />
             <LoginFormContainer method="POST" action="http://api.myblog.test/site/login" />
         </div>
       </div>
