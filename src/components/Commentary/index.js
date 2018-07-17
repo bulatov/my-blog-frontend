@@ -40,7 +40,6 @@ export default class Commentary extends Component {
     const { userName, createdAt, content, depth } = this.props;
     const isExpandedClassName = this.state.isExpanded ? 'commentary__body_expanded' : '';
     const commentaryMarginLeft = this.shiftForNested * depth + 'px';
-    console.log(this.shiftForNested);
 
     return (
       <div className="commentary" style={{marginLeft: commentaryMarginLeft}}>
