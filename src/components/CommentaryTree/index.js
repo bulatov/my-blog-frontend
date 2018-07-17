@@ -11,7 +11,7 @@ export default class CommentaryTree extends Component {
         comments: []
     };
 
-    getGraph() {
+    buildGraph() {
         const graph = {};
 
         this.props.comments.forEach((comment) => {
@@ -19,7 +19,7 @@ export default class CommentaryTree extends Component {
         });
 
         this.props.comments.forEach((comment) => {
-            if (!comment.parentId) {
+            if (comment.parentId === null) {
                 return;
             }
 
@@ -29,10 +29,14 @@ export default class CommentaryTree extends Component {
         return graph;
     }
 
+    /**
+     * Returns array of comment objects in order of dfs
+     * @param  {Object} from  comment object
+     * @param  {number} depth depth of `from` node
+     * @return {Array}
+     */
     dfs(from, depth) {
-        this.used[from.id] = true;
-
-        let subTreeOrder = [...from, depth];
+        let subTreeOrder = [{...from, depth}];
 
         this.graph[from.id].forEach((to) => {
             subTreeOrder = subTreeOrder.concat(this.dfs(to, depth + 1));
@@ -41,31 +45,31 @@ export default class CommentaryTree extends Component {
         return subTreeOrder;
     }
 
+    /**
+     * Returns array of comments as React components
+     * @return {array}
+     */
     getCommentaryComponentList() {
-        const commentaryComponentList = [];
         const { comments, ...restProps } = this.props;
+        let commentsByDfsOrder = [];
 
-        this.used = {};
-        this.graph = this.getGraph();
+        this.graph = this.buildGraph();
 
         comments.forEach((comment) => {
-            if (!this.used[comment.id]) {
-                const commentsByDfsOrder = this.dfs(comment, 0);
-                commentaryComponentList.concat(commentsByDfsOrder);
+            if (comment.parentId === null) {
+                commentsByDfsOrder = commentsByDfsOrder.concat(this.dfs(comment, 0));
             }
         });
-        console.log('QQQQ', commentaryComponentList);
-        return commentaryComponentList;
+
+        return commentsByDfsOrder.map((comment, index) => {
+            return <Commentary {...restProps} {...comment} key={index} />;
+        });
     }
 
     render() {
-
         return (
             <div>
-                {
-                    //comments.map((comment, index) => <Commentary {...restProps} {...comment} key={index} />)
-                    this.getCommentaryComponentList()
-                }
+                {this.getCommentaryComponentList()}
             </div>
         );
     }
