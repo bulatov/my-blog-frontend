@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
+import CsrfPlaceholder from '../CsrfPlaceholder';
 
 export default class LoginForm extends Component {
     static propTypes = {
         method: PropTypes.oneOf(['GET', 'POST']).isRequired,
         action: PropTypes.string.isRequired,
         csrfToken: PropTypes.string,
-        csrfInputFieldName: requiredIf(PropTypes.string, props => props.csrfToken)
+        csrfPlaceholderName: requiredIf(PropTypes.string, props => props.csrfToken)
     };
 
     render() {
-        const { method, action, csrfToken, csrfInputFieldName } = this.props;
+        const { method, action, csrfToken, csrfPlaceholderName } = this.props;
 
         return (
             <div className="login-form">
                 <p>Please fill out the following fields to login:</p>
                 <form method={method} action={action}>
-                    { csrfToken && <input type="text" name={csrfInputFieldName} value={csrfToken} hidden readOnly /> }
+                    { csrfToken && <CsrfPlaceholder token={csrfToken} name={csrfPlaceholderName} /> }
                     <label htmlFor="login-form__username">Username</label>
                     <input type="text" id="login-form__username" name="LoginForm[username]" required />
                     <br />

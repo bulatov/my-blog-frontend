@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default function withAjax(WrappedComponent, ajaxAction) {
+export default function withAjaxInit(WrappedComponent, ajaxAction) {
     return class extends Component {
         state = {
             data: {}
