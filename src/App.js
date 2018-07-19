@@ -4,14 +4,14 @@ import './App.css';
 
 import config from './services/ApiService.config.js';
 import ApiService from './services/ApiService.js';
-import withAjaxInit from './hocs/withAjaxInit.js';
+import withAjax from './hocs/withAjax.js';
 import LoginForm  from './components/LoginForm';
 import PostContainer from './containers/PostContainer';
 // <Commentary userName="frt" createdAt="2017 03 01 14:15:16" content={`hello everyone.hello everyone.hello \n everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.hello everyone.`} />
 
 class App extends Component {
     render() {
-        const LoginFormContainer = withAjaxInit(LoginForm, () => ApiService.getCsrfToken());
+        const LoginFormContainer = withAjax(LoginForm, () => ApiService.getCsrfToken());
         return (
             <div className="App">
                 <header className="App-header">

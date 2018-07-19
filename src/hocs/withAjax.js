@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default function withAjaxInit(WrappedComponent, ajaxAction) {
+export default function withAjax(WrappedComponent, ajaxAction, handlers) {
     return class extends Component {
         state = {
             data: {}
@@ -16,7 +16,7 @@ export default function withAjaxInit(WrappedComponent, ajaxAction) {
         }
 
         render() {
-            return <WrappedComponent {...this.state.data} {...this.props} />;
+            return <WrappedComponent {...this.state.data} {...this.props} {...handlers} />;
         }
     }
 }
