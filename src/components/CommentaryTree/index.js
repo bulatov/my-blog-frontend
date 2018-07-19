@@ -19,7 +19,7 @@ export default class CommentaryTree extends Component {
         });
 
         this.props.comments.forEach((comment) => {
-            if (comment.parentId === null) {
+            if (!comment.parentId) {
                 return;
             }
 
@@ -56,7 +56,7 @@ export default class CommentaryTree extends Component {
         this.graph = this.buildGraph();
 
         comments.forEach((comment) => {
-            if (comment.parentId === null) {
+            if (!comment.parentId) {
                 commentsByDfsOrder = commentsByDfsOrder.concat(this.dfs(comment, 0));
             }
         });

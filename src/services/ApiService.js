@@ -1,4 +1,5 @@
-import config from './ApiService.config.js';
+import config from '../config/backend.config.js';
+import normalize from '../helpers/normalize.js';
 
 const fetchOptions = {
     method: 'GET',
@@ -15,7 +16,8 @@ const ApiService = {
     commentary: {
         create: (postId, content, parentId) => {
             return fetch(`${config.urls.commentary.create}?post_id=${postId}&content=${content}&parent_id=${parentId}`, fetchOptions)
-            .then((response) => response.json());
+            .then(response => response.json())
+            .then(json => normalize.commentary.create(json))
         },
 
         edit: (commentaryId, content) => new Promise.resolve(),
@@ -24,44 +26,45 @@ const ApiService = {
     },
 
     post: {
-        get: (postId) => {
-            return new Promise((resolve, reject) => {
-                resolve({
-                    id: 3,
-                    userName: 'admin',
-                    createdAt: 1531825574387,
-                    title: 'post-title-mock',
-                    content: 'post-content-mock',
-                    comments: [
-                        {
-                            id: 1,
-                            userName: 'frt',
-                            createdAt: 1531825574387,
-                            parentId: null,
-                            content: 'my comment'
-                        },
-                        {
-                            id: 2,
-                            userName: 'frt',
-                            createdAt: 1531825574387,
-                            parentId: 1,
-                            content: 'my comment inside my comment..'
-                        }
-                    ]
-                });
-            });
+        get: (id) => {
+            // return new Promise((resolve, reject) => {
+            //     resolve({
+            //         id: 3,
+            //         userName: 'admin',
+            //         createdAt: 1531825574387,
+            //         title: 'post-title-mock',
+            //         content: 'post-content-mock',
+            //         comments: [
+            //             {
+            //                 id: 1,
+            //                 userName: 'frt',
+            //                 createdAt: 1531825574387,
+            //                 parentId: null,
+            //                 content: 'my comment'
+            //             },
+            //             {
+            //                 id: 2,
+            //                 userName: 'frt',
+            //                 createdAt: 1531825574387,
+            //                 parentId: 1,
+            //                 content: 'my comment inside my comment..'
+            //             }
+            //         ]
+            //     });
+            // });
+            return fetch(`${config.urls.post.get}/${id}`, fetchOptions)
+            .then(response => response.json())
+            .then(json => normalize.post.get(json))
         },
 
         create: () => {
             return new Promise((resolve, reject) => {
                 resolve({
-                    post: {
-                        postId: 2,
-                        userName: 'admin',
-                        createdAt: 1531825574387,
-                        title: 'post-title-mock',
-                        content: 'post-content-mock',
-                    }
+                    id: 2,
+                    userName: 'admin',
+                    createdAt: 1531825574387,
+                    title: 'post-title-mock',
+                    content: 'post-content-mock',
                 });
             });
         },
@@ -71,7 +74,22 @@ const ApiService = {
         delete: () => new Promise.resolve()
     },
 
-
+    blog: {
+        get: () => {
+            // return new Promise((resolve, reject) => {
+            //     resolve({
+            //         posts: [
+            //             { id: 1, userName: 'admin', createdAt: 1531825574387, title: 'post-title-mock', content: 'post-content-mock' },
+            //             { id: 2, userName: 'admin', createdAt: 1531825574387, title: 'post-title-mock', content: 'post-content-mock' },
+            //             { id: 3, userName: 'admin', createdAt: 1531825574387, title: 'post-title-mock', content: 'post-content-mock' },
+            //         ]
+            //     });
+            // });
+            return fetch(config.urls.blog.get, fetchOptions)
+            .then(response => response.json())
+            .then(json => normalize.blog.get(json))
+        }
+    }
 };
 
 export default ApiService;

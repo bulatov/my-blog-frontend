@@ -8,6 +8,7 @@ export default class CommentaryNew extends Component {
         cancelButtonText: PropTypes.string.isRequired,
         submitButtonText: PropTypes.string.isRequired,
         showButtons: PropTypes.bool,
+        parentId: PropTypes.number,
         onNewCommentarySubmit: PropTypes.func
     };
 
@@ -46,10 +47,11 @@ export default class CommentaryNew extends Component {
     }
 
     handleSubmitButtonClick = () => {
-        /*
-        * TODO call handler with real post_id
-        */
-        this.props.onNewCommentarySubmit(1, this.state.inputValue);
+        if (this.props.parentId) {
+            this.props.onReplyCommentarySubmit(this.props.match.params.id, this.state.inputValue, this.props.parentId);
+        } else {
+            this.props.onNewCommentarySubmit(this.props.match.params.id, this.state.inputValue);
+        }
     }
 
     render() {
