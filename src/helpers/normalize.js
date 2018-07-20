@@ -17,6 +17,8 @@ export default {
         get: (response) => {
             return {
                 ...response,
+                createdAt: response.created_at * 1000,
+                userName: response.user_name,
                 commentaries: response.commentaries.map(commentary => {
                     return {
                         ...commentary,

@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Khula');
+
 body {
   margin: 0;
   padding: 0;
 }
 
 html {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Khula', sans-serif;
   font-size: 10px;
 }
 

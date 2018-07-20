@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import './styles.css';
 import CommentaryNew from '../CommentaryNew';
 import CommentaryTree from '../CommentaryTree';
 
@@ -17,14 +19,27 @@ export default class Post extends Component {
         const { id, userName, createdAt, title, content, commentaries, ...restProps } = this.props;
 
         return (
-            <div>
-                <span>id: {id}</span>
-                <span>userName: {userName}</span>
-                <span>createdAt: {createdAt}</span>
-                <h1>{title}</h1>
-                <div>{content}</div>
-                <CommentaryNew {...restProps} placeholder="Add a public comment" cancelButtonText="Cancel" submitButtonText="Comment" />
-                <CommentaryTree {...restProps} comments={commentaries} />
+            <div className="post">
+
+                <div className="post__header">
+                    <div className="post__title">{title}</div>
+                    <div className="post__meta">
+                        <span className="post__username">Created by {userName} </span>
+                        <span className="post__createdAt">at {(new Date(createdAt)).toDateString()}</span>
+                    </div>
+                </div>
+
+                <div className="post__body">
+                    <div className="post__content">{content}</div>
+                </div>
+
+                <div className="post__commentaryNew">
+                    <CommentaryNew {...restProps} placeholder="Add a public comment" cancelButtonText="Cancel" submitButtonText="Comment" />
+                </div>
+
+                <div className="post__commentaries">
+                    <CommentaryTree {...restProps} comments={commentaries} />
+                </div>
             </div>
         );
     }
