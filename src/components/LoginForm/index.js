@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
+
+import './styles.css';
 import CsrfPlaceholder from '../CsrfPlaceholder';
 
 export default class LoginForm extends Component {
@@ -15,19 +17,15 @@ export default class LoginForm extends Component {
         const { method, action, csrfToken, csrfPlaceholderName } = this.props;
 
         return (
-            <div className="login-form">
-                <p>Please fill out the following fields to login:</p>
-                <form method={method} action={action}>
+            <form className="login-form" method={method} action={action}>
+                <div className="login-form__header">Sign in</div>
+                <div className="login-form__body">
                     { csrfToken && <CsrfPlaceholder token={csrfToken} name={csrfPlaceholderName} /> }
-                    <label htmlFor="login-form__username">Username</label>
-                    <input type="text" id="login-form__username" name="LoginForm[username]" required />
-                    <br />
-                    <label htmlFor="login-form__password">Password</label>
-                    <input type="password" id="login-form__password" name="LoginForm[password]" required />
-                    <br />
-                    <input type="submit" value="Send" />
-                </form>
-            </div>
+                    <input className="login-form__username" type="text" placeholder="username" name="LoginForm[username]" required autoComplete="off" autoFocus />
+                    <input className="login-form__password" type="password" placeholder="password" name="LoginForm[password]" required />
+                    <input className="login-form__submit" type="submit" value="Sign in" />
+                </div>
+            </form>
         );
     }
 }

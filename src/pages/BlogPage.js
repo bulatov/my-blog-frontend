@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ApiService from '../services/ApiService.js';
 import withAjax from '../hocs/withAjax.js';
 import Blog from '../components/Blog';
+import Menu from '../components/Menu';
 
 export default class BlogPage extends Component {
     postHandlers = {
@@ -21,8 +22,12 @@ export default class BlogPage extends Component {
 
     render() {
         const BlogContainer = withAjax(Blog, () => ApiService.blog.get(), this.postHandlers);
+
         return (
-            <BlogContainer />
+            <div className="page blog-page">
+                <Menu />
+                <BlogContainer />
+            </div>
         );
     }
 }

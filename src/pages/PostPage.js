@@ -4,6 +4,7 @@ import ApiService from '../services/ApiService.js';
 import withAjax from '../hocs/withAjax.js';
 import Post from '../components/Post';
 import getNewState from '../helpers/getNewState.js';
+import Menu from '../components/Menu';
 
 export default class PostPage extends Component {
     commentaryHandlers = {
@@ -33,8 +34,12 @@ export default class PostPage extends Component {
     render() {
         const postId = this.props.match.params.id;
         const PostContainer = withAjax(Post, () => ApiService.post.get(postId), this.commentaryHandlers);
+
         return (
-            <PostContainer {...this.props} />
+            <div className="page post-page">
+                <Menu />
+                <PostContainer {...this.props} />
+            </div>
         );
     }
 }
